@@ -1,6 +1,6 @@
 BOXES.Body = Class.create();
 BOXES.Body.prototype = Object.extend(new CANNON.Body, {
-	initialize : function(obj) {
+	initialize: function (obj) {
 		CANNON.Body.call(this, obj);
 
 		//回転しない
@@ -35,7 +35,7 @@ BOXES.Body.prototype = Object.extend(new CANNON.Body, {
 		this.addVelocity = new CANNON.Vec3(0, 0, 0);
 
 		//衝突時のイベント処理
-		this.addEventListener("collide", function(e) {
+		this.addEventListener("collide", function (e) {
 			for (var i = 0; i < this.collideActions.length; i++) {
 				//実行
 				this.collideActions[i](e);
@@ -48,7 +48,7 @@ BOXES.Body.prototype = Object.extend(new CANNON.Body, {
 	 * @param {CANNON.Vec3} scale
 	 * @param {CANNON.Vec3} position
 	 */
-	addBox : function(scale, position) {
+	addBox: function (scale, position) {
 		if (!scale) {
 			scale = new CANNON.Vec3(1, 1, 1);
 		}
@@ -63,7 +63,7 @@ BOXES.Body.prototype = Object.extend(new CANNON.Body, {
 	 * @method distance
 	 * @param {BOXES.Body} body
 	 */
-	distance : function(body) {
+	distance: function (body) {
 		var x = Math.pow(this.position.x - body.positon.x, 2);
 		var y = Math.pow(this.position.y - body.positon.y, 2);
 		var z = Math.pow(this.position.z - body.positon.z, 2);

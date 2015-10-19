@@ -1,4 +1,4 @@
-window.onload = function() {
+window.onload = function () {
 	console.log(worldData);
 	var demo = new BOXES.Demo();
 	var world = demo.getWorld();
@@ -8,7 +8,7 @@ window.onload = function() {
 
 	world.defaultContactMaterial.contactEquationStiffness = 1e8;
 	world.defaultContactMaterial.contactEquationRelaxation = 10;
-	
+
 	demo.setScene("test1", worldData);
 	demo.setScene("test2", worldData);
 	demo.start();

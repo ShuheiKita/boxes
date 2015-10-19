@@ -5,9 +5,9 @@
  */
 BOXES.BoxBody = Class.create();
 BOXES.BoxBody.prototype = Object.extend(new CANNON.Body, {
-	initialize : function(obj) {
+	initialize: function (obj) {
 		CANNON.Body.call(this, obj);
-		
+
 		this.fixedRotation = false;
 
 		this.angularDamping = 0.4;
@@ -49,7 +49,7 @@ BOXES.BoxBody.prototype = Object.extend(new CANNON.Body, {
 		this.catching = null;
 
 		//衝突時のイベント処理
-		this.addEventListener("collide", function(e) {
+		this.addEventListener("collide", function (e) {
 			for (var i = 0; i < this.collideActions.length; i++) {
 				//実行
 				this.collideActions[i](e);
@@ -64,7 +64,7 @@ BOXES.BoxBody.prototype = Object.extend(new CANNON.Body, {
 	 * @param {Object} y
 	 * @param {Object} z
 	 */
-	setScale : function(x, y, z) {
+	setScale: function (x, y, z) {
 		/**
 		 * サイズを保持.
 		 * @property scale
@@ -80,7 +80,7 @@ BOXES.BoxBody.prototype = Object.extend(new CANNON.Body, {
 	 * @method equals
 	 * @param {Object} body
 	 */
-	equals : function(body) {
+	equals: function (body) {
 		this.id == body.id ? true : false;
 	},
 	/**
@@ -88,7 +88,7 @@ BOXES.BoxBody.prototype = Object.extend(new CANNON.Body, {
 	 * @method addCollideAction
 	 * @param {function} func
 	 */
-	addCollideAction : function(func) {
+	addCollideAction: function (func) {
 		this.collideActions.push(func);
 	},
 	/**
@@ -97,7 +97,7 @@ BOXES.BoxBody.prototype = Object.extend(new CANNON.Body, {
 	 * @param {BoxBody} body 衝突相手
 	 * @return {Object} 軸と方向
 	 */
-	getCollideDirection : function(body) {
+	getCollideDirection: function (body) {
 		//自身
 		var target = this;
 		//衝突方向を調べる
@@ -136,8 +136,8 @@ BOXES.BoxBody.prototype = Object.extend(new CANNON.Body, {
 				dir = -1;
 			}
 			return {
-				"axis" : axis,
-				"direction" : dir
+				"axis": axis,
+				"direction": dir
 			};
 		}
 		return null;
@@ -147,7 +147,7 @@ BOXES.BoxBody.prototype = Object.extend(new CANNON.Body, {
 	 * @method isLanding
 	 * @return {boolean}
 	 */
-	isLanding : function() {
+	isLanding: function () {
 		if (!this.collidingBody) {
 			return false;
 		}
@@ -168,7 +168,7 @@ BOXES.BoxBody.prototype = Object.extend(new CANNON.Body, {
 	 * @method applyVelocity
 	 * @param {CANNON.Vec3} vec
 	 */
-	applyVelocity : function(vec) {
+	applyVelocity: function (vec) {
 		//速度加算
 		this.velocity = this.velocity.vadd(vec);
 
@@ -179,8 +179,8 @@ BOXES.BoxBody.prototype = Object.extend(new CANNON.Body, {
 		x = x != 0 ? x / Math.abs(x) : 0;
 		y = y != 0 ? y / Math.abs(y) : 0;
 		z = z != 0 ? z / Math.abs(z) : 0;
-		if(x==0 && z==0){
-			return ;
+		if (x == 0 && z == 0) {
+			return;
 		}
 		this.vector.set(x, y, z);
 	},
@@ -190,27 +190,27 @@ BOXES.BoxBody.prototype = Object.extend(new CANNON.Body, {
 	 * @param {CANNON.Vec3} vec
 	 * 
 	 */
-	pushVelocity : function(vec) {
+	pushVelocity: function (vec) {
 		this.addVelocity = this.addVelocity.vadd(vec);
 	},
-	setAngularVelocity : function(){
+	setAngularVelocity: function () {
 		var value = 5 / this.mass;
-		this.angularVelocity.set(this.vector.x*value, 0, this.vector.z*value);
+		this.angularVelocity.set(this.vector.x * value, 0, this.vector.z * value);
 	},
-	distance : function(body){
+	distance: function (body) {
 		var x = Math.pow(this.position.x - body.positon.x, 2);
 		var y = Math.pow(this.position.y - body.positon.y, 2);
 		var z = Math.pow(this.position.z - body.positon.z, 2);
-		return Math.sqrt(x+y+z);
+		return Math.sqrt(x + y + z);
 	},
-	targetVector : function(body){
+	targetVector: function (body) {
 		var dis = this.distance(body);
-		if(dis==0){
+		if (dis == 0) {
 			return new CANNON.Vec3(0, 0, 0);
 		}
 		var x = body.position.x - this.position.x;
 		var y = body.position.y - this.position.y;
 		var z = body.position.z - this.position.z;
-		return new CANNON.Vec3(x/dis, y/dis, z/dis);
+		return new CANNON.Vec3(x / dis, y / dis, z / dis);
 	}
 });

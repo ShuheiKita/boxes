@@ -5,10 +5,10 @@
  * BOXESメインクラス.
  * @class BOXES
  */
-var BOXES = (function() {
+var BOXES = (function () {
 	return {
 	};
-	
+
 })();
 
 //物理世界クラス

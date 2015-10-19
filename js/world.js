@@ -4,7 +4,7 @@
  */
 BOXES.World = Class.create();
 BOXES.World.prototype = Object.extend(CANNON.World, {
-	initialize : function() {
+	initialize: function () {
 		CANNON.World.call(this);
 	},
 	/**
@@ -14,7 +14,7 @@ BOXES.World.prototype = Object.extend(CANNON.World, {
 	 * @param {String} name2
 	 * @param {Object} param
 	 */
-	setContactMaterial : function(name1, name2, param) {
+	setContactMaterial: function (name1, name2, param) {
 		var m1 = this.getMaterial(name1);
 		var m2 = this.getMaterial(name2);
 		if (m1 && m2) {
@@ -27,7 +27,7 @@ BOXES.World.prototype = Object.extend(CANNON.World, {
 	 * @method setMaterials
 	 * @param {Array<String} names
 	 */
-	setMaterials : function(names) {
+	setMaterials: function (names) {
 		for (var i = 0; i < names.length; i++) {
 			this.addMaterial(new CANNON.Material(names[i]));
 		}
@@ -37,7 +37,7 @@ BOXES.World.prototype = Object.extend(CANNON.World, {
 	 * @method setContactMaterials
 	 * @param {Object} array
 	 */
-	setContactMaterials : function(array) {
+	setContactMaterials: function (array) {
 		for (var i = 0; i < array.length; i++) {
 			this.setContactMaterial(array.m1, array.m2, array.param);
 		}
@@ -48,7 +48,7 @@ BOXES.World.prototype = Object.extend(CANNON.World, {
 	 * @param {String} name
 	 * @return {CANNON.Material}
 	 */
-	getMaterial : function(name) {
+	getMaterial: function (name) {
 		for (var i = 0; i < this.materials.length; i++) {
 			if (name == this.materials[i].name) {
 				return this.materials[i];
